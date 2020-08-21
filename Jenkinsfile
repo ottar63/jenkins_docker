@@ -4,7 +4,7 @@ node {
         checkout scm
     }
     stage('Build image') {
-        app = docker.build("ottar63/jenkins-docker","--build-arg network=host")
+        app = docker.build("ottar63/jenkins-docker","--build-arg network=host .")
     }
     stage('Push image') {
         docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
