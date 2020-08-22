@@ -49,8 +49,8 @@ VOLUME /var/jenkins_home
 # or config file with your custom jenkins Docker image.
 RUN mkdir -p ${REF}/init.groovy.d
 
-ARG TINI_VERSION=v0.16.1
-ENV TINI_SHA 6c41ec7d33e857d4779f14d9c74924cab0c7973485d2972419a3b7c7620ff5fd
+ARG TINI_VERSION=v0.19.0
+ENV TINI_SHA 93dcc18adc78c65a028a84799ecf8ad40c936fdfc5f2a57b1acda5a8117fa82c|
 
 COPY tini_pub.gpg ${JENKINS_HOME}/tini_pub.gpg
 
