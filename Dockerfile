@@ -15,7 +15,7 @@ RUN apt-get update \
 ARG user=jenkins
 ARG group=jenkins
 ARG uid=1000
-ARG gid=1000
+ARG gid=973
 ARG http_port=8080
 ARG agent_port=50000
 ARG REF=/usr/share/jenkins/ref
@@ -58,10 +58,10 @@ RUN curl -fsSL https://github.com/krallin/tini/releases/download/${TINI_VERSION}
 
 # jenkins version being bundled in this docker image
 ARG JENKINS_VERSION
-ENV JENKINS_VERSION ${JENKINS_VERSION:-2.190.1}
+ENV JENKINS_VERSION ${JENKINS_VERSION:-2.235.5}
 
 # jenkins.war checksum, download will be validated using it
-ARG JENKINS_SHA=46fb1d25d9423fc66aadd648dc74b9772863a7fbbd89bfc14c873cd0c3436f05
+ARG JENKINS_SHA=c786f7b18fd3fc1bafce85b3b9bc5d8c5f09e3a313cfd618bae8c1d920b6f70b
 
 # Can be used to customize where jenkins.war get downloaded from
 ARG JENKINS_URL=https://repo.jenkins-ci.org/public/org/jenkins-ci/main/jenkins-war/${JENKINS_VERSION}/jenkins-war-${JENKINS_VERSION}.war
