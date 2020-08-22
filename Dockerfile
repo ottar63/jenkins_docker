@@ -1,9 +1,18 @@
 #FROM openjdk:8-jdk-stretch
 FROM openjdk:8
 
+#Originale
+#RUN apt-get update \
+#       && apt-get upgrade -y \
+#       && apt-get install -y git curl \
+#       apt-transport-https \
+#       ca-certificates \
+#       gnupg2 \
+#       software-properties-common \
+#       && rm -rf /var/lib/apt/lists/*
+#Removed apt-get upgrade
 RUN apt-get update \
-       && apt-get upgrade -y \
-       && apt-get install -y git curl \
+       && apt-get install --no-install-recommends -y git curl \
        apt-transport-https \
        ca-certificates \
        gnupg2 \
@@ -51,9 +60,7 @@ RUN curl -fsSL https://github.com/krallin/tini/releases/download/${TINI_VERSION}
 	&& curl -fsSL https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini-static.asc -o /sbin/tini.asc \
 	&& gpg --no-tty --import ${JENKINS_HOME}/tini_pub.gpg \
 	&& gpg --verify /sbin/tini.asc \
-	&& chmod +x /sbin/tini \ 
-	&& rm /etc/localtime \
-	&& ln -s /usr/share/zoneinfo/Europe/Oslo /etc/localtime
+	&& chmod +x /sbin/tini  
 
 
 # jenkins version being bundled in this docker image
@@ -81,7 +88,7 @@ RUN add-apt-repository \
    "deb https://download.docker.com/linux/debian buster\
    stable"
 RUN apt-get update  -qq \
-    && apt-get install docker-ce -y
+    && apt-get install --no-install-recommends docker-ce -y
 RUN usermod -aG docker jenkins
 
 #  Having issue with pushing overlay2 images , get device or resource busy
