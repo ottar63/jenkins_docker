@@ -24,7 +24,8 @@ RUN apt-get update \
 ARG user=jenkins
 ARG group=jenkins
 ARG uid=1000
-ARG gid=973
+ARG gid=1000
+ARG docker_gid=999
 ARG http_port=8080
 ARG agent_port=50000
 ARG REF=/usr/share/jenkins/ref
@@ -83,6 +84,7 @@ ENV JENKINS_UC_EXPERIMENTAL=https://updates.jenkins.io/experimental
 RUN chown -R ${user} "$JENKINS_HOME" /usr/share/jenkins/ref
 
 # Add Docker
+RUN groupadd -g ${docker_gid} docker 
 RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
 RUN add-apt-repository \
    "deb https://download.docker.com/linux/debian buster\
