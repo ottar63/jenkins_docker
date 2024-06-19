@@ -1,5 +1,5 @@
 #FROM openjdk:8-jdk-stretch
-FROM openjdk:8
+FROM openjdk:11
 
 #Originale
 #RUN apt-get update \
@@ -66,10 +66,10 @@ RUN curl -fsSL https://github.com/krallin/tini/releases/download/${TINI_VERSION}
 
 # jenkins version being bundled in this docker image
 ARG JENKINS_VERSION
-ENV JENKINS_VERSION ${JENKINS_VERSION:-2.303.3}
+ENV JENKINS_VERSION ${JENKINS_VERSION:-2.452.2}
 
 # jenkins.war checksum, download will be validated using it
-ARG JENKINS_SHA=8a6ae7367755b3f31a050faa945f7a3991abdb43d941c7294cac890c1e2779d8
+ARG JENKINS_SHA=360efc8438db9a4ba20772981d4257cfe6837bf0c3fb8c8e9b2253d8ce6ba339
 
 # Can be used to customize where jenkins.war get downloaded from
 ARG JENKINS_URL=https://repo.jenkins-ci.org/public/org/jenkins-ci/main/jenkins-war/${JENKINS_VERSION}/jenkins-war-${JENKINS_VERSION}.war
