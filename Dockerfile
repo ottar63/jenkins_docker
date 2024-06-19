@@ -18,7 +18,6 @@ RUN apt-get update \
        gnupg2 \
        software-properties-common \
        && rm -rf /var/lib/apt/lists/*
-# set correct TimeZone
 
 
 ARG user=jenkins
@@ -108,6 +107,7 @@ ENV COPY_REFERENCE_FILE_LOG $JENKINS_HOME/copy_reference_file.log
 
 # problem with setting local timezone and caching in docker 
 ARG CACHEBUST=1 
+# set correct TimeZone
 RUN rm -rf /etc/localtime && ln -s /usr/share/zoneinfo/Europe/Oslo /etc/localtime
 
 USER ${user}
